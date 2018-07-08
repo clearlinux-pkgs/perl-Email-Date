@@ -4,7 +4,7 @@
 #
 Name     : perl-Email-Date
 Version  : 1.104
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Email-Date-1.104.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Email-Date-1.104.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libe/libemail-date-perl/libemail-date-perl_1.104-2.debian.tar.xz
@@ -80,6 +80,7 @@ make TEST_VERBOSE=1 test
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/perl-Email-Date
 cp LICENSE %{buildroot}/usr/share/doc/perl-Email-Date/LICENSE
+cp deblicense/copyright %{buildroot}/usr/share/doc/perl-Email-Date/deblicense_copyright
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot}
 else
@@ -97,6 +98,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 %files license
 %defattr(-,root,root,-)
 /usr/share/doc/perl-Email-Date/LICENSE
+/usr/share/doc/perl-Email-Date/deblicense_copyright
 
 %files man
 %defattr(-,root,root,-)
