@@ -1,0 +1,8 @@
+1.104
+perl(Capture::Tiny)
+perl(Date::Parse)
+perl(Email::Abstract)
+perl(Email::Date::Format)
+perl(Email::Simple)
+perl(MRO::Compat)
+perl(Module::Pluggable)

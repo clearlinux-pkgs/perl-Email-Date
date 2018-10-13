@@ -4,22 +4,15 @@
 #
 Name     : perl-Email-Date
 Version  : 1.104
-Release  : 2
+Release  : 3
 URL      : https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Email-Date-1.104.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Email-Date-1.104.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libe/libemail-date-perl/libemail-date-perl_1.104-2.debian.tar.xz
 Summary  : 'Find and Format Date Headers'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
-Requires: perl-Email-Date-license
-Requires: perl-Email-Date-man
-Requires: perl(Capture::Tiny)
-Requires: perl(Date::Parse)
-Requires: perl(Email::Abstract)
-Requires: perl(Email::Date::Format)
-Requires: perl(Email::Simple)
-Requires: perl(MRO::Compat)
-Requires: perl(Module::Pluggable)
+Requires: perl-Email-Date-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 BuildRequires : perl(Capture::Tiny)
 BuildRequires : perl(Date::Parse)
 BuildRequires : perl(Email::Abstract)
@@ -33,6 +26,15 @@ This archive contains the distribution Email-Date,
 version 1.104:
 Find and Format Date Headers
 
+%package dev
+Summary: dev components for the perl-Email-Date package.
+Group: Development
+Provides: perl-Email-Date-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-Email-Date package.
+
+
 %package license
 Summary: license components for the perl-Email-Date package.
 Group: Default
@@ -41,19 +43,11 @@ Group: Default
 license components for the perl-Email-Date package.
 
 
-%package man
-Summary: man components for the perl-Email-Date package.
-Group: Default
-
-%description man
-man components for the perl-Email-Date package.
-
-
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n Email-Date-1.104
-mkdir -p %{_topdir}/BUILD/Email-Date-1.104/deblicense/
+cd ..
+%setup -q -T -D -n Email-Date-1.104 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Email-Date-1.104/deblicense/
 
 %build
@@ -78,13 +72,13 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-Email-Date
-cp LICENSE %{buildroot}/usr/share/doc/perl-Email-Date/LICENSE
-cp deblicense/copyright %{buildroot}/usr/share/doc/perl-Email-Date/deblicense_copyright
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Email-Date
+cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Email-Date/LICENSE
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Email-Date/deblicense_copyright
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -93,13 +87,13 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/Email/Date.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Email/Date.pm
 
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-Email-Date/LICENSE
-/usr/share/doc/perl-Email-Date/deblicense_copyright
-
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Email::Date.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Email-Date/LICENSE
+/usr/share/package-licenses/perl-Email-Date/deblicense_copyright
