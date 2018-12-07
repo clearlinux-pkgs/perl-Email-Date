@@ -4,7 +4,7 @@
 #
 Name     : perl-Email-Date
 Version  : 1.104
-Release  : 9
+Release  : 10
 URL      : https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Email-Date-1.104.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Email-Date-1.104.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libe/libemail-date-perl/libemail-date-perl_1.104-2.debian.tar.xz
@@ -48,7 +48,7 @@ license components for the perl-Email-Date package.
 cd ..
 %setup -q -T -D -n Email-Date-1.104 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Email-Date-1.104/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Email-Date-1.104/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
