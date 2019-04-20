@@ -4,11 +4,11 @@
 #
 Name     : perl-Email-Date
 Version  : 1.104
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Email-Date-1.104.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Email-Date-1.104.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libe/libemail-date-perl/libemail-date-perl_1.104-2.debian.tar.xz
-Summary  : 'Find and Format Date Headers'
+Summary  : Perl/CPAN Module Email::Date: Find and Format Date Headers
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-Email-Date-license = %{version}-%{release}
@@ -30,6 +30,7 @@ Find and Format Date Headers
 Summary: dev components for the perl-Email-Date package.
 Group: Development
 Provides: perl-Email-Date-devel = %{version}-%{release}
+Requires: perl-Email-Date = %{version}-%{release}
 
 %description dev
 dev components for the perl-Email-Date package.
