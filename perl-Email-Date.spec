@@ -4,7 +4,7 @@
 #
 Name     : perl-Email-Date
 Version  : 1.104
-Release  : 17
+Release  : 18
 URL      : https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Email-Date-1.104.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Email-Date-1.104.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libe/libemail-date-perl/libemail-date-perl_1.104-2.debian.tar.xz
@@ -111,4 +111,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.3/Email/Date.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Email/Date.pm
